@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool isEnglish = true;
+  var isEnglish = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -52,18 +51,19 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               child: TextButton(
                 onPressed: () {
-                  setState(() {
-                    isEnglish = !isEnglish;
-                  });
-                  final newLocale = isEnglish ? const Locale("en") : const Locale("fr");
+                    isEnglish.value = !isEnglish.value;
+
+                  final newLocale = isEnglish.value ? const Locale("en") : const Locale("fr");
                   Get.updateLocale(newLocale);
                 },
-                child: Text(
-                  isEnglish ? "Switch to French" : "Passer à l'anglais",
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: AppColors.white// Set text color
+                child: Obx(()=>
+                  Text(
+                    isEnglish.value ? "Switch to French" : "Passer à l'anglais",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: AppColors.white// Set text color
+                    ),
                   ),
                 ),
               ),
