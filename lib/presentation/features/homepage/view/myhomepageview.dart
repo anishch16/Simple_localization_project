@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:hello_language_change/config/resources/colors.dart';
-import '../../search_page/model/coutries_list.dart';
-import '../../search_page/model/searchpage_model.dart';
+import '../../search_page/view/searchpageview.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key});
@@ -31,67 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             SizedBox(
-              child: Autocomplete<Country>(
-                optionsBuilder: (TextEditingValue textEditingValue) {
-                  return countryOptions
-                      .where((Country county) => county.name.toLowerCase()
-                      .startsWith(textEditingValue.text.toLowerCase())
-                  )
-                      .toList();
-                },
-                displayStringForOption: (Country option) => option.name,
-                fieldViewBuilder: (
-                    BuildContext context,
-                    TextEditingController fieldTextEditingController,
-                    FocusNode fieldFocusNode,
-                    VoidCallback onFieldSubmitted
-                    ) {
-                  return TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      hintText: AppLocalizations.of(context)!.search ?? "",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25)
-                      ),
-                    ),
-                    controller: fieldTextEditingController,
-                    focusNode: fieldFocusNode,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  );
-                },
-                onSelected: (Country selection) {
-                  print('Selected: ${selection.name}');
-                },
-                optionsViewBuilder: (
-                    BuildContext context,
-                    AutocompleteOnSelected<Country> onSelected,
-                    Iterable<Country> options
-                    ) {
-                  return Material(
-                    child: Container(
-                      child: ListView.builder(
-                        padding: const EdgeInsets.all(10.0),
-                        itemCount: options.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final Country option = options.elementAt(index);
-
-                          return GestureDetector(
-                            onTap: () {
-                              onSelected(option);
-                            },
-                            child: ListTile(
-                              title: Text(
-                                  option.name,
-                                  style: const TextStyle(color: Colors.black)
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  );
-                },
-              ),
+              child: Get.put(SearchPage()),
             ),
             SizedBox(height: 16.0),
             Expanded(
