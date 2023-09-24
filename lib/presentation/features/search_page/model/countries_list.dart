@@ -11,4 +11,16 @@ const List<Country> countryOptions = <Country>[
   Country(name: 'India', size: 3287263),
   Country(name: 'North America', size: 24709000),
   Country(name: 'South America', size: 17840000),
+  Country(name: 'Russia', size: 17125242),
+  Country(name: 'Brazil', size: 8514877),
+  Country(name: 'United States', size: 9372610),
+  Country(name: 'China', size: 9596961),
+  Country(name: 'Argentina', size: 2780400),
+  Country(name: 'Saudi Arabia', size: 2149690),
+  Country(name: 'Greenland', size: 2166086),
+  Country(name: 'Mexico', size: 1964375),
+  Country(name: 'Algeria', size: 2381741),
+  Country(name: 'Kazakhstan', size: 2724900)
+
+
 ];
